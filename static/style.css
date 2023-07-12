@@ -1,0 +1,273 @@
+html, body {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  /* 80's fonts */
+  font-family: 'tradegothiclt-bold', sans-serif;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: 800;
+  color: #f6f6f6;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background: #81c192;
+}
+
+#container {
+  min-width: 600px;
+  width: 100%; /* set initial width to 90% of viewport width */
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  font-size: 10px;
+}
+
+#container h1{
+  height: 55px;
+  text-shadow:#000 4px 4px 0px;
+  font-size: 7em;
+  text-transform: uppercase;
+}
+#container p{
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.popcorn-image {
+  height: 90px;
+  margin-bottom:20px;
+}
+
+
+#header {
+  min-height: 80%; /* set initial height to 80% of viewport height */
+  width: 90%; /* set initial width to 90% of viewport width */
+  max-width: 500px;
+  background-color: #da93d0;
+  margin: 0 auto;
+  padding: 80px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  box-shadow: 12px 10px 0 0 #000;
+}
+
+.title {
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) { /* adjust for larger screens */
+  #container {
+    min-height: 70vh;
+  }
+}
+
+@media (min-width: 1200px) { /* adjust for even larger screens */
+  #container {
+    min-height: 20vh;
+  }
+}
+
+/* set the height of the container to match the height of its content */
+#container:after {
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+h2{
+  font-size: 20px;
+}
+
+table {
+    margin: 0 auto;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 14px;
+    /* movie to left */
+}
+
+
+#movie-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+#movie-form label {
+  font-size: 18px;
+}
+
+#movie-form input[type="text"] {
+  position: relative;
+  width: 70%;
+  flex-grow: 1;
+  padding-right: 60px; /* Add space for the button */
+  font-size: 20px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  box-shadow: 6px 5px 0 0 #000;
+  height: 50px; /* Add height to match button */
+  line-height: 50px; /* Add line-height to center text */
+}
+
+/* change the color of the placeholder text */
+#movie-form input[type="text"]::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+#movie-form button[type="submit"] {
+  position: absolute;
+  transform: translateY(-49%);
+  top: 78%;
+  right: 74px; /* Adjust right position */
+  width: 50px;
+  height: 50px; /* Add height to match input */
+  line-height: 50px; /* Add line-height to center text */
+  background-color: rgb(221, 238, 95);
+  color: rgb(0, 0, 0);
+  border: 1px solid #ddd;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  font-size: 20px;
+  text-align: center;
+}
+
+
+/* Style the submit button text */
+#movie-form button[type="submit"]::before {
+  color:#000;
+  font-size: 20px;
+}
+
+#movie-form button[type="submit"]:hover{
+  box-shadow: none;
+  background-color: #bcbcbc;
+  transition: all 0.2s ease-in-out;
+}
+
+#movie-form button[type="submit"]:active{
+  /* rotate content of button ">" */
+  box-shadow: none;
+  background-color: rgb(221, 238, 95);
+  rotate: 10deg;
+}
+
+/* Remove default button appearance */
+#movie-form button[type="submit"]:focus {
+  outline: none;
+}
+
+/* Adjust margin and padding of the form */
+#movie-form label,
+#movie-form input[type="text"] {
+  margin: 0;
+  padding: 10px 10px 10px 30px;
+  box-sizing: border-box;
+}
+
+/* Remove margin-bottom from the input field */
+#movie-form input[type="text"] {
+  margin-bottom: 0;
+}
+
+
+
+h1, label {
+  font-size: 5em;
+  color: white;
+}
+
+
+#movie input{
+  padding-left: 10px;
+}
+
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+
+#myBtn {
+  border: none;
+  height: 50px;
+  width: 80px;
+  margin: 0 auto;
+  background-color: white;
+  cursor: pointer;
+  border-color: #000;
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 0 #000;
+  
+}
+
+#myBtn img {
+  width: 24px; /* Set the width of the button image */
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out; /* Add transition on hover */
+}
+
+#myBtn:hover{
+  box-shadow: none;
+  background-color: #bcbcbc;
+  transition: all 0.2s ease-in-out;
+}
+
+#myBtn:active img {
+  transform: translateY(3px); /* Move the image down on click */
+  transform: rotate(180deg);
+}
+
+.shuffle-text {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  animation: none;
+}
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AJAX Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>AJAX Example</h1>
+    <form id="myForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><br><br>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"><br><br>
+      
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
+    
+    <script>
+      $(document).ready(function() {
+        $('#myForm').submit(function(event) {
+          event.preventDefault();
+          var form_data = $(this).serialize();
+          $.ajax({
+            type: 'POST',
+            url: '/submit-form',
+            data: form_data,
+            success: function(response) {
+              alert('Form submitted successfully!');
+            },
+            error: function() {
+              alert('An error occurred while submitting the form.');
+            }
+          });
+        });
+      });
+    </script>
+    
+  </body>
+</html>

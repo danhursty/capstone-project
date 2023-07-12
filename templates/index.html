@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendations</title>
+    <!-- link style.css -->
+    {% block links %}
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/brandonmcconnell/typed.css/master/typed.scss">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    
+    <script src="../static/curtains.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"> -->
+    {% endblock %}
+ 
+  </head>
+<body>
+  
+  <div id="container">
+    <div id="title">
+        <h1>Flyx</h1>      
+    </div>
+    <div id="header">
+      <form id="movie-form" method="POST">
+        <label for="user_query">What type of movie do you want to watch?</label>
+        <!-- add a break -->
+        <br>
+        <br>
+        <input id="movie" type="text" name="user_query" placeholder="a movie that makes me laugh">
+        <button type="submit">></button>
+      </form>
+      <script>
+        document.addEventListener('DOMContentLoaded', function(event) {
+          var dataText = ["A movie that makes me laugh", "I want to feel scared.", "A romantic film.", "I want to be on the edge of my seat."];
+          var currentTextIndex = 0;
+          
+          function typeWriter(text, i, fnCallback) {
+            if (i < text.length) {
+              document.querySelector("#movie").setAttribute("placeholder", text.substring(0, i+1) +'|');
+              
+              setTimeout(function() {
+                typeWriter(text, i + 1, fnCallback)
+              }, 100);
+            } else if (typeof fnCallback == 'function') {
+              setTimeout(fnCallback, 700);
+            }
+          }
+      
+          function cycleText() {
+            var currentText = dataText[currentTextIndex];
+            typeWriter(currentText, 0, function() {
+              setTimeout(function() {
+                currentTextIndex = (currentTextIndex + 1) % dataText.length;
+                cycleText();
+              }, 2000);
+            });
+          }
+      
+          cycleText();
+
+        });
+      </script>
+
+  
+      
+  <br>
+  {% if user_query %}
+  <h2>User searched: <span style="font-style: italic;">'{{ user_query }}'</span></h2>
+  <!-- <ul>
+  {% for index, row in cosine_similarities.iterrows() %}
+    <li>{{ row['genre'] }} - {{ row['cosine_similarity'] }}</li>
+  {% endfor %}
+  </ul>   -->
+  <h2>Here are your top 5 movie recommendations:</h2>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Genre</th>
+          <th>IMDB Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for index, row in df_recommendation.iterrows() %}
+      <script>
+      function replaceImage(img) {
+        img.onerror = "";
+        img.src = "../static/images/img_not_found.png";
+        img.style.width = "69px";
+        img.style.height = "104px";
+      }</script>
+        <tr>
+          <td><img src="{{ row['Poster_Link'] }}" class="card-img-top" alt="Movie Poster" onerror="replaceImage(this)"></td>
+          <td>{{ row['Movie_Title'] }}</td>
+          <td>{{ row['Genre'] }}</td>
+          <td>{{ row['IMDB_Rating'] }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <!-- <button onclick="location.reload()" class="shuffle-button"></button> -->
+    <!-- /* create an image that has onclick to reload the page */ -->
+    <button onclick="location.reload()" id="myBtn"><span class="shuffle-text">Shuffle</span>
+    <img src="../static/images/popcorn.png" alt="button">
+    </button>
+    {% endif %}
+    </div>
+  </div>
+  </div>
+</body>
+</html>
+
+<!-- 
+TO-DO 
+- add .key.json for the api key
+- Can i get where you can watch the movie?
+- AQNALYSE THE DATA
+-->

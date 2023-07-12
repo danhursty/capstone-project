@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Movie Providers</title>
+    </head>
+    <body>
+        <h1>Movie Providers</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Movie Title</th>
+                    <th>Providers</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in df_providers.iterrows() %}
+                    <tr>
+                        <td>{{ row['Movie_Title'] }}</td>
+                        <td>{{ row['Providers'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
