@@ -86,7 +86,7 @@ def save_data(user_query: str, most_similar_genre: Dict[str, Any], df_recommenda
         json.dump(all_data, outfile)
 
 # Create route
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def recommendation():
     if request.method == 'POST':
         user_query = request.form['user_query']
