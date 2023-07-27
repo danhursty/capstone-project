@@ -1,7 +1,7 @@
 runtime: python311  # Update this to match the Python version you are using
 entrypoint: gunicorn -b :$PORT main:app
 env_variables:
-  OPENAI_API_KEY: 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
+  OPENAI_API_KEY: YOURKEY
 
 automatic_scaling:
   target_cpu_utilization: 0.65
