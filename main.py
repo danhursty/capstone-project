@@ -86,12 +86,15 @@ def save_data(user_query: str, most_similar_genre: Dict[str, Any], df_recommenda
         json.dump(all_data, outfile)
 
 # Create route
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def recommendation():
     if request.method == 'POST':
         user_query = request.form['user_query']
         user_embedding = openai.Embedding.create(input=user_query, model="text-embedding-ada-002")['data'][0]['embedding']
-
+        openai.api_key = load_api_key()
+        df_new, df_old = load_dataframes()
+        df_new_poster = process_dataframe(df_new, df_old)
+        embeddings = get_genre_embeddings(df_new_poster)
         # Calculate cosine similarities
         cosine_similarities = calculate_cosine_similarities(user_embedding, embeddings)
         df_cosine_similarities = pd.DataFrame(cosine_similarities)
@@ -100,15 +103,15 @@ def recommendation():
 
         # Get recommendations
         df_recommendation = get_recommendations(df_new_poster, most_similar_genre)
-        save_data(user_query, most_similar_genre, df_recommendation)
+        # save_data(user_query, most_similar_genre, df_recommendation)
         return render_template('index.html', cosine_similarities=df_cosine_similarities, user_query=user_query, df_recommendation=df_recommendation)
 
     return render_template('index.html')
 
 # Run app
 if __name__ == '__main__':
-    openai.api_key = load_api_key()
-    df_new, df_old = load_dataframes()
-    df_new_poster = process_dataframe(df_new, df_old)
-    embeddings = get_genre_embeddings(df_new_poster)
+    # openai.api_key = load_api_key()
+    # df_new, df_old = load_dataframes()
+    # df_new_poster = process_dataframe(df_new, df_old)
+    # embeddings = get_genre_embeddings(df_new_poster)
     app.run(port=5000)
